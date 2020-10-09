@@ -1,20 +1,42 @@
-const Sequelize = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 
+/**
+ * @extends {Courses} - Extends Sequelize Model with all properties to it, and implemented validation for title and description.
+ *
+ */
 module.exports = (sequelize) => {
-  class Courses extends Sequelize.Model {}
+  class Courses extends Model {}
   Courses.init(
     {
       title: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Title is required!",
+          },
+          notNull: {
+            msg: "Title is required!",
+          },
+        },
       },
       description: {
-        type: Sequelize.TEXT,
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Description is required!",
+          },
+          notNull: {
+            msg: "Description is required!",
+          },
+        },
       },
       estimatedTime: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
       materialsNeeded: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
     },
     { sequelize }

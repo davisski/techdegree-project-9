@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {cb} - Callback function.
+ *  
+ */
 const asyncHandler = (cb) => {
   return async (req, res, next) => {
     try {
