@@ -25,9 +25,9 @@ const userController = {
   }),
   create: asyncHandler(async (req, res, next) => {
     try {
-      const user = await Users.create(req.body);
+      await Users.create(req.body);
       res.location = "/";
-      res.status(201).json({ message: "Account successfully created!", user });
+      res.status(201).send();
     } catch (error) {
       console.log("ERROR: ", error.name);
       const errors = handleSequelizeErrors(error);

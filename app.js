@@ -33,7 +33,7 @@ const routes = require("./routes");
 /**
  * Use routes.
  */
-app.use("/api/v1", routes);
+app.use("/api", routes);
 
 /**
  * Not found error handler.

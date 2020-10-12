@@ -18,6 +18,7 @@ const coursesController = {
   all: asyncHandler(async (req, res, next) => {
     try {
       const courses = await Courses.findAll({
+        attributes: { exclude: ["createdAt", "updatedAt"] },
         include: [
           {
             model: Users,
@@ -33,13 +34,13 @@ const coursesController = {
   }),
   create: asyncHandler(async (req, res, next) => {
     try {
-      const course = await Courses.create({
+      await Courses.create({
         title: req.body.title,
         description: req.body.description,
         userId: req.currentUser.id,
       });
       res.location = "/";
-      res.status(201).json({ message: "Course added successfully!", course });
+      res.status(201).send();
     } catch (error) {
       const errors = handleSequelizeErrors(error);
       next(errors);
@@ -55,6 +56,7 @@ const coursesController = {
             attributes: { exclude: ["password", "createdAt", "updatedAt"] },
           },
         ],
+        attributes: { exclude: ["createdAt", "updatedAt"]},
         where: {
           id: req.params.id,
         },
