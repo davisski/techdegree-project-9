@@ -34,12 +34,12 @@ const coursesController = {
   }),
   create: asyncHandler(async (req, res, next) => {
     try {
-      await Courses.create({
+       const course = await Courses.create({
         title: req.body.title,
         description: req.body.description,
         userId: req.currentUser.id,
       });
-      res.location = "/";
+      res.location(`/courses/${course.id}`);
       res.status(201).send();
     } catch (error) {
       const errors = handleSequelizeErrors(error);

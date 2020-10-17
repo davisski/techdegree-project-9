@@ -26,7 +26,7 @@ const userController = {
   create: asyncHandler(async (req, res, next) => {
     try {
       await Users.create(req.body);
-      res.location = "/";
+      res.location('/');
       res.status(201).send();
     } catch (error) {
       console.log("ERROR: ", error.name);
